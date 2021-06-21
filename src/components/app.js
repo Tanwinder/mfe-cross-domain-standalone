@@ -23,6 +23,10 @@ const App = () => {
             <Provider store={store}>
                 <Jumbotron>
                     <Container>
+                        <div>
+                        <div>
+                        <a href={process.env.NODE_ENV === 'production' ? 'https://mfe-home.netlify.app/' : "http://localhost:4000/"}>Back to Home page</a></div>
+                        </div>
                         <Switch>
                             <Route path="/login" >
                                 <Login />
