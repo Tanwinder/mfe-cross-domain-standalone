@@ -1,0 +1,1 @@
+# mfe-cross-domain-standalone
