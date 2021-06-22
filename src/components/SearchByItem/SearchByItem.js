@@ -13,11 +13,6 @@ const SearchByItem = () => {
     const {userInfo} = useSelector(state => state.user);
     const items = useSelector(state => state?.SearchByItem?.items);
     useEffect(() => {
-        if(!userInfo) {
-            history.push('/login')
-        }
-    })
-    useEffect(() => {
         dispatch(callList(''));
     }, [])
     const onChangeInput = (event) => {

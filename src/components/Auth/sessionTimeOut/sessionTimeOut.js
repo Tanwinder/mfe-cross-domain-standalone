@@ -52,7 +52,7 @@ import React, {
         if (minPast === maxTime) {
           clearInterval(warningInactiveInterval.current);
           setOpen(false);
-          sessionStorage.removeItem('lastTimeStamp');
+          localStorage.removeItem('lastTimeStamp');
           logOut();
         }
       }, 1000);
@@ -65,10 +65,10 @@ import React, {
   
       if (!!userInfo) {
         timeStamp = moment();
-        sessionStorage.setItem('lastTimeStamp', timeStamp);
+        localStorage.setItem('lastTimeStamp', timeStamp);
       } else {
         clearInterval(warningInactiveInterval.current);
-        sessionStorage.removeItem('lastTimeStamp');
+        localStorage.removeItem('lastTimeStamp');
       }
       timeChecker();
       setOpen(false);

@@ -16,7 +16,7 @@ function* callLoginSaga({formData, history, alreadyLoggedIn}) {
             }
             const {data} = yield call(Api, '/auth/signin', options);
             localStorage.setItem('profile', JSON.stringify(data));
-            sessionStorage.setItem('profile', JSON.stringify(data));
+            localStorage.setItem('profile', JSON.stringify(data));
             yield put({ type: AUTH_RESULT, payload: data });
             history.push(from?.pathname, { from: history?.location });
             // window.location.href= from;  //to redirect to different previous domain
@@ -38,7 +38,7 @@ function* callSignUpSaga({formData, history, alreadyLoggedIn}) {
             }
             const {data} = yield call(Api, '/auth/signup', options);
             localStorage.setItem('profile', JSON.stringify(data));
-            sessionStorage.setItem('profile', JSON.stringify(data));
+            // sessionStorage.setItem('profile', JSON.stringify(data));
             yield put({ type: AUTH_RESULT, payload: data });
             // history.push(from?.pathname, { from: history?.location });
         }
