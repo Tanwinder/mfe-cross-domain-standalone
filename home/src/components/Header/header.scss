@@ -1,0 +1,28 @@
+.home {
+    .navbar {
+      padding: 5px 20px;
+    }
+    .navbar-nav {
+      flex: 1;
+      justify-content: center;
+    }
+    .nav-item {
+      margin-right: 15px;
+      &.logout {
+        display: flex;
+        min-width: 200px;
+        justify-content: flex-end;
+        div {
+          margin-right: 10px;
+          color: chocolate;
+        }
+      }
+      
+      & > a {
+       text-decoration: none;
+      }
+    }
+    .navbar-collapse {
+      justify-content: space-between;
+    }
+  }
