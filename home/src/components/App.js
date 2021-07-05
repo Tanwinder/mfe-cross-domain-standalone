@@ -10,7 +10,7 @@ import Login from './Login/Login'
 import {signin} from './Login/LoginAction'
 
 var createHost = require('../common/crossdomain/host');
-import baseUrl from '../utils/api.config'
+import {baseUrl} from '../utils/api.config'
 
 const App = () => {
     const history = useHistory();
