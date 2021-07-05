@@ -9,6 +9,7 @@ import Login from './Login/Login'
 import {signin} from './Login/LoginAction'
 
 var createGuest = require('../common/crossdomain/guest');
+import {baseUrl} from '../utils/api.config'
 
 const App = () => {
     const history = useHistory();
@@ -18,7 +19,7 @@ const App = () => {
     // const {userInfo} = useSelector(state => state.user);
     useEffect(() => {
         if(!profile) {
-            var guestStorage = createGuest('http://localhost:4000');
+            var guestStorage = createGuest(baseUrl('HOME'));
         guestStorage.getsession('profile', (error, value) => {
             // value for the key of 'profile' will be retrieved from localStorage
             if(error) {

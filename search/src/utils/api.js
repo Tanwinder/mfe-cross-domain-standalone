@@ -1,11 +1,11 @@
 import axios from 'axios';
 // import { message as AntMessage } from 'antd';
-// import { baseUrl } from './api.config';
+import { baseUrl } from './api.config';
 
 export async function Api(url, options, token) {
 
     const instance = axios.create({
-        baseURL: "http://localhost:5000",
+        baseURL: baseUrl('SERVICE'),
         timeout: 5000
     });
     instance.interceptors.request.use((req) => {
@@ -14,7 +14,7 @@ export async function Api(url, options, token) {
         // }
         if (sessionStorage.getItem('profile')) {
             req.headers.Authorization = `Bearer ${JSON.parse(sessionStorage.getItem('profile')).token}`;
-        }
+          }
       
         return req;
       });
