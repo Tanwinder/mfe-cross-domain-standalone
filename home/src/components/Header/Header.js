@@ -17,6 +17,7 @@ import {
   NavbarText,
   Button
 } from 'reactstrap';
+import { baseUrl } from '../../utils/api.config';
 
 const Header = (props) => {
   const {userInfo} = useSelector(state => state.user);
@@ -38,7 +39,7 @@ const Header = (props) => {
               <Link to="/showroom">Showroom</Link>
             </NavItem> */}
             <NavItem>
-              <a href="http://localhost:4002/">Orders</a>
+              <a href={baseUrl('ORDERS')}>Orders</a>
             </NavItem>
           </Nav>
           <Nav>
