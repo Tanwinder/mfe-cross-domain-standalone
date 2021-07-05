@@ -6,9 +6,10 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 let mode = "development";   // development or production
 let target = "web";  // web or node
+console.log('process.env.NODE_ENV----', process.env.NODE_ENV)
 if (process.env.NODE_ENV === "production") {
   mode = "production";
-  target = "browserslist";
+  // target = "browserslist";
 }
 
 module.exports = {
