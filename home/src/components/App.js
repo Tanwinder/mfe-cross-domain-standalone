@@ -10,6 +10,7 @@ import Login from './Login/Login'
 import {signin} from './Login/LoginAction'
 
 var createHost = require('../common/crossdomain/host');
+import baseUrl from '../utils/api.config'
 
 const App = () => {
     const history = useHistory();
@@ -17,15 +18,15 @@ const App = () => {
     useEffect(() => {
         var storageHost = createHost([
             {
-                origin: 'http://localhost:4000',
+                origin: baseUrl('HOME'),
                 allowedMethods: ['get', 'set', 'getsession', 'remove'],
             },
             {
-                origin: 'http://localhost:4001',
+                origin: baseUrl('SEARCH'),
                 allowedMethods: ['get', 'getsession'],
             },
             {
-                origin: 'http://localhost:4002',
+                origin: baseUrl('ORDERS'),
                 allowedMethods: ['get', 'getsession'],
             },
         ]);

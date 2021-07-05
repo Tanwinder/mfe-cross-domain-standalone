@@ -2,16 +2,18 @@ import React, {useState, useEffect} from 'react';
 import { Jumbotron, Container, Input } from 'reactstrap';
 import './searchbyitem.scss'
 import {useDispatch, useSelector} from 'react-redux'
+import {useHistory} from 'react-router-dom'
 import {callList} from './SearchByItemAction'
 import SearchContainer from './SearchContainer'
 
 const SearchByItem = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     // const [inputVal, setinputVal] = useState('');
     const items = useSelector(state => state?.SearchByItem?.items);
     useEffect(() => {
         if(!sessionStorage.getItem('profile')) {
-            window.location.href = "http://localhost:4000/login?";
+            history.push('/');
         }
         dispatch(callList(''));
     }, [])
