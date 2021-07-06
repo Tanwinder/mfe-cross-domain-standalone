@@ -3,6 +3,11 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const  ModuleFederationPlugin  =  require("webpack/lib/container/ModuleFederationPlugin");
+const webpack = require('webpack')
+
+const packageJson = require('./package.json');
+const deps = packageJson.dependencies;
 
 let mode = "development";   // development or production
 let target = "web";  // web or node
@@ -42,6 +47,13 @@ module.exports = {
         type: "asset",
       },
       {
+        test: /bootstrap\.js$/,
+        loader: 'bundle-loader',
+        options: {
+          lazy: true,
+        },
+      },
+      {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
@@ -55,6 +67,29 @@ module.exports = {
   },
 
   plugins: [
+    new  ModuleFederationPlugin({
+      name: "home",
+      // library: {type: 'var', name : "home" },
+      // filename: 'remoteEntry.js',
+      remotes: {
+        search: 'search@http://localhost:4001/remoteEntry.js'
+      },
+      // exposes: {
+      //   "./CalendarCard": "./src/CalendarCard" 
+      // },
+      shared: {
+        react: {
+          singleton: true,
+          requiredVersion: deps.react,
+          eager: true
+        },
+        'react-dom': {
+          singleton: true,
+          requiredVersion: deps['react-dom'],
+          eager: true
+        }
+      }
+    }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({

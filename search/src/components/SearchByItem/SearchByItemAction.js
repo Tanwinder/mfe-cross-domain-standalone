@@ -1,5 +1,5 @@
 // import {signIn, signUp} from '../utils/api'
-import { CALLLIST } from '../../actions/actionTypes'
+import { CALLLIST } from './actionTypes'
 
 // const { AUTH, CALL_AUTH, LOG_OUT } = obj;
 

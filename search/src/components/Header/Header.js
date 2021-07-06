@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import {Link } from 'react-router-dom'
+import { useSelector} from 'react-redux'
 import './header.scss'
 import {
   Collapse,
@@ -12,34 +14,41 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  NavbarText
+  NavbarText,
+  Button
 } from 'reactstrap';
+import { baseUrl } from '../../utils/api.config';
 
 const Header = (props) => {
+  const {userInfo} = useSelector(state => state.user);
   const [isOpen, setIsOpen] = useState(false);
-
+  // console.log(process.env.NODE_ENV, "NODE_ENV,SHOWROOM_URL", NODE_ENV && NODE_ENV, SHOWROOM_URL && SHOWROOM_URL )
   const toggle = () => setIsOpen(!isOpen);
 
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">Project</NavbarBrand>
+        <NavbarBrand href="/">MFE Project</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink href="http://localhost:4000">Home</NavLink>
+              <Link to="/">Home</Link>
             </NavItem>
+            {/* <NavItem>
+              <Link to="/showroom">Showroom</Link>
+            </NavItem> */}
             <NavItem>
-              <NavLink href="http://localhost:4001">Showroom</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="http://localhost:4002">Orders</NavLink>
+              <a href={baseUrl('ORDERS')}>Orders</a>
             </NavItem>
           </Nav>
-          <NavItem>
-              <NavLink href="http://localhost:4000/logout">Log Out</NavLink>
+          <Nav>
+          <NavItem className="logout">
+            {/* <div>{APP_VERSION && APP_VERSION}</div> */}
+            { userInfo ? <div>{`${userInfo?.result?.firstName} ${userInfo?.result?.lastName}`}</div> : ""}
+              <Link to="/login">{ userInfo ? 'Log Out' : 'Log In'}</Link>
           </NavItem>
+          </Nav>
         </Collapse>
       </Navbar>
     </div>

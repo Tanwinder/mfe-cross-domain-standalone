@@ -1,5 +1,5 @@
 
-import {GETLIST} from '../../actions/actionTypes';
+import {GETLIST} from './actionTypes';
 // const initialState = {
 //     userInfo: JSON.parse(localStorage.getItem('profile')) || null
 // }

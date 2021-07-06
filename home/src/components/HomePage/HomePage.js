@@ -5,7 +5,8 @@ import {useDispatch, useSelector} from 'react-redux'
 // import {callList} from './SearchByItemAction'
 // import SearchContainer from './SearchContainer'
 
-import SearchByItem from '../SearchByItem/SearchByItem'
+// import SearchByItem from '../SearchByItem/SearchByItem'
+const SearchByItem = React.lazy(() => import('search/SearchByItem'))
 
 const HomePage = () => {
     const dispatch = useDispatch();
@@ -13,6 +14,7 @@ const HomePage = () => {
     const items = useSelector(state => state?.SearchByItem?.items);
     return(
         <div className="searchbyitem">
+            <React.Suspense fallback={<div>Loading...fallback</div>}>
             <Jumbotron fluid>
                 <Container fluid>
                     <h1>Homepage</h1>
@@ -24,6 +26,8 @@ const HomePage = () => {
                     <SearchContainer items={items || []}/> */}
                 </Container>
             </Jumbotron>
+            </React.Suspense>
+            
            
         </div>
     )

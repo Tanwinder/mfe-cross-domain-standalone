@@ -13,7 +13,7 @@ const SearchByItem = () => {
     const items = useSelector(state => state?.SearchByItem?.items);
     useEffect(() => {
         if(!sessionStorage.getItem('profile')) {
-            history.push('/');
+            history.push('/login');
         }
         dispatch(callList(''));
     }, [])
