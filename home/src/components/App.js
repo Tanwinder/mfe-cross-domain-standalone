@@ -98,7 +98,6 @@ const App = () => {
             debugger;
             // Cookies.set('profile', ghk);
             // Cookies.set('profile', ghk , { domain: 'netlify.app' });
-            variables
             var LastReportGenerated="Jul 11 2021",
             baseDomain = '.netlify.app',
             expireAfter = new Date();
