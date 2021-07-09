@@ -96,8 +96,8 @@ const App = () => {
         if(!!profile) {
             const ghk = runOnDevSalesFloor();
             debugger;
-            Cookies.set('profile', ghk);
-            Cookies.set('profile', ghk , { domain: '.netlify.app' });
+            // Cookies.set('profile', ghk);
+            Cookies.set('profile', ghk , { domain: '.netlify.app', path: '/' });
             dispatch(signin(profile, history, true));
             // history.push(localHis);
             
