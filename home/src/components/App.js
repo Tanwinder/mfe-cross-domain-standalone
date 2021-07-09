@@ -97,7 +97,7 @@ const App = () => {
             const ghk = runOnDevSalesFloor();
             debugger;
             // Cookies.set('profile', ghk);
-            Cookies.set('profile', ghk , { path: '', domain: '.netlify.app' });
+            Cookies.set('profile', ghk , { path: '/', domain: 'netlify.app' });
             //variables
             // var LastReportGenerated="Jul 11 2021",
             // baseDomain = '.netlify.app',
