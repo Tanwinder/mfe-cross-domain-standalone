@@ -19,7 +19,7 @@ const App = () => {
     // const profile = sessionStorage.getItem('profile');
     // const {userInfo} = useSelector(state => state.user);
     useEffect(() => {
-        let value = Cookies.get('profile');
+        let value = Cookies.get('profile', { domain: '.netlify.app' });
         debugger;
         if (value) {
             console.log("ss and ls values-----------", value);
