@@ -99,15 +99,15 @@ const App = () => {
             // Cookies.set('profile', ghk);
             Cookies.set('profile', ghk , { path: '', domain: '.netlify.app' });
             //variables
-            var LastReportGenerated="Jul 11 2021",
-            baseDomain = '.netlify.app',
-            expireAfter = new Date();
+            // var LastReportGenerated="Jul 11 2021",
+            // baseDomain = '.netlify.app',
+            // expireAfter = new Date();
             
-            //setting up  cookie expire date after a week
-            expireAfter.setDate(expireAfter.getDate() + 7);
+            // //setting up  cookie expire date after a week
+            // expireAfter.setDate(expireAfter.getDate() + 7);
             
-            //now setup cookie
-            document.cookie="Report={'ReportName':'MainReport', 'lastGenerated':" + LastReportGenerated + "}; domain=" + baseDomain + "; expires=" + expireAfter + "; path=/";
+            // //now setup cookie
+            // document.cookie="Report={'ReportName':'MainReport', 'lastGenerated':" + LastReportGenerated + "}; domain=" + baseDomain + "; expires=" + expireAfter + "; path=/";
 
             dispatch(signin(profile, history, true));
             // history.push(localHis);
