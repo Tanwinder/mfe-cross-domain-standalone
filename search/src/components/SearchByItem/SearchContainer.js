@@ -2,13 +2,13 @@ import React, {useState, useEffect} from 'react';
 import { Container, Input, ListGroup, ListGroupItem } from 'reactstrap';
 import {useSelector} from 'react-redux'
 
-const ListItems = ({itemsVal}) => {
+const ListItems = ({itemsVal, onSelectItem}) => {
   return (
     <ListGroup>
       {
           itemsVal && itemsVal.map(item => {
               return(
-                <ListGroupItem className="searchList" key={item._id}>
+                <ListGroupItem className="searchList" key={item._id} onClick={() => onSelectItem(item)}>
                     <div>{item.purchaseMethod}</div>
                     <div>{item.storeLocation}</div>
                     <div>{item.couponUsed ? 'Coupon Used' : ""}</div>
@@ -20,12 +20,10 @@ const ListItems = ({itemsVal}) => {
   );
 
 }
-const SearchContainer = ({items}) => {
+const SearchContainer = ({items, onSelectItem}) => {
     return(
         <div className="SearchContainer">
-            <Container fluid>
-                <ListItems itemsVal={items}/>
-            </Container>
+                <ListItems itemsVal={items} onSelectItem={onSelectItem}/>
            
         </div>
     )

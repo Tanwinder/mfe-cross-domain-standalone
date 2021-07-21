@@ -1,35 +1,25 @@
-import React, {useState, useEffect} from 'react';
-import { Jumbotron, Container, Input } from 'reactstrap';
-// import './searchbyitem.scss'
-import {useDispatch, useSelector} from 'react-redux'
-// import {callList} from './SearchByItemAction'
-// import SearchContainer from './SearchContainer'
-
-// import SearchByItem from '../SearchByItem/SearchByItem'
-const SearchByItem = React.lazy(() => import('search/SearchByItem'))
+import React, {useState, useEffect, useRef, useCallback} from 'react';
+import { Jumbotron, Container, Row, Col } from 'reactstrap';
+import './HomePage.scss'
+// import {useDispatch, useSelector} from 'react-redux'
+import LeftPanel from '../LeftPanel/LeftPanel';
+import RightPanel from '../RightPanel/RightPanel';
 
 const HomePage = () => {
-    const dispatch = useDispatch();
-    // const [inputVal, setinputVal] = useState('');
-    const items = useSelector(state => state?.SearchByItem?.items);
     return(
-        <div className="searchbyitem">
-            <React.Suspense fallback={<div>Loading...fallback</div>}>
-            <Jumbotron fluid>
-                <Container fluid>
-                    <h1>Homepage</h1>
-                    <SearchByItem />
-                    {/* <Input 
-                    placeholder="search by city name" 
-                    type="text" 
-                    onKeyUp={onChangeInput} />
-                    <SearchContainer items={items || []}/> */}
-                </Container>
-            </Jumbotron>
-            </React.Suspense>
-            
-           
-        </div>
+        <Container fluid={true} className="homePage">
+            <Row xs="12">
+            <h2>Homepage</h2>
+            </Row>
+            <Row xs="2">
+                <Col className="homePage__col">
+                <LeftPanel />             
+                </Col>
+                <Col className="homePage__col">
+                <RightPanel />
+                </Col>
+            </Row>
+      </Container>
     )
 }
 

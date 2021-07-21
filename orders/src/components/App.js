@@ -20,7 +20,6 @@ const App = () => {
     // const {userInfo} = useSelector(state => state.user);
     useEffect(() => {
         let value = Cookies.get('profile', { domain: '.netlify.app' });
-        debugger;
         if (value) {
             console.log("ss and ls values-----------", value);
             const ghk = value.split("--");

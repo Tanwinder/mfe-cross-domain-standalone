@@ -7,6 +7,7 @@ import Header from './Header/Header'
 import HomePage from './HomePage/HomePage'
 import Login from './Login/Login'
 import Cookies from 'js-cookie'
+import ErrorBoundary from '../common/ErrorBoundries'
 
 import {signin} from './Login/LoginAction'
 
@@ -95,7 +96,6 @@ const App = () => {
         const localHis = history?.location;
         if(!!profile) {
             const ghk = runOnDevSalesFloor();
-            debugger;
             // Cookies.set('profile', ghk);
             // Cookies.set('profile', ghk , { domain: 'netlify.app' });
             var LastReportGenerated="Jul 11 2021",
@@ -117,7 +117,8 @@ const App = () => {
         }   
     },[]);
     return(
-        <div className="home">
+        <ErrorBoundary>
+            <div className="home">
             <Header/>
             <Container>
                 <Switch>
@@ -131,6 +132,7 @@ const App = () => {
                 </Switch>
             </Container>
         </div>
+        </ErrorBoundary>
     )
 }
 

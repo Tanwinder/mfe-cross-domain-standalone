@@ -87,7 +87,12 @@ module.exports = {
           singleton: true,
           requiredVersion: deps['react-dom'],
           eager: true
-        }
+        },
+        'react-redux':{
+          singleton: true,
+          requiredVersion: deps['react-dom'],
+          eager: true
+        },
       }
     }),
     new CleanWebpackPlugin(),
