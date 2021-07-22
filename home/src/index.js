@@ -1,3 +1,6 @@
-// import('./bootstrap');
-import bootstrap from './bootstrap'
+import { searchModule } from "../config/moduleConfig";
+import bootstrap from './bootstrap';
+
+window[searchModule.urlGlobalVariable] = searchModule.url;
+
 bootstrap(() => {})

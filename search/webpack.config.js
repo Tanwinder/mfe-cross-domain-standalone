@@ -61,8 +61,8 @@ module.exports = {
 
   plugins: [
     new  ModuleFederationPlugin({
-      name: "search",
-      // library: {type: 'var', name : "home" },
+      name: "Search",
+      // library: {type: 'var', name : "Search" },
       filename: 'remoteEntry.js',
       // remotes: {
       //   search: 'search'
@@ -74,17 +74,20 @@ module.exports = {
         react: {
           singleton: true,
           requiredVersion: deps.react,
-          eager: true
+          // import: "react", // the "react" package will be used a provided and fallback module
+          // shareKey: "react", // under this name the shared module will be placed in the share scope
+          // shareScope: "default", // share scope with this name will be used
+          // eager: true
         },
         'react-dom': {
           singleton: true,
           requiredVersion: deps['react-dom'],
-          eager: true
+          // eager: true
         },
         'react-redux':{
           singleton: true,
           requiredVersion: deps['react-dom'],
-          eager: true
+          // eager: true
         },
       }
     }),

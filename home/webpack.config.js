@@ -4,10 +4,13 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const  ModuleFederationPlugin  =  require("webpack/lib/container/ModuleFederationPlugin");
+const EagerLoadingRemotePlugin = require("./config/EagerLoadingRemotePlugin")
 const webpack = require('webpack')
 
 const packageJson = require('./package.json');
 const deps = packageJson.dependencies;
+
+const { searchModule } = require('./config/moduleConfig');
 
 let mode = "development";   // development or production
 let target = "web";  // web or node
@@ -72,7 +75,8 @@ module.exports = {
       // library: {type: 'var', name : "home" },
       // filename: 'remoteEntry.js',
       remotes: {
-        search: 'search@http://localhost:4001/remoteEntry.js'
+        // search: 'search@http://localhost:4001/remoteEntry.js'  // for Lazy loading
+        Search: searchModule.federationConfig,
       },
       // exposes: {
       //   "./CalendarCard": "./src/CalendarCard" 
@@ -81,20 +85,24 @@ module.exports = {
         react: {
           singleton: true,
           requiredVersion: deps.react,
-          eager: true
+          // import: "react", // the "react" package will be used a provided and fallback module
+          // shareKey: "react", // under this name the shared module will be placed in the share scope
+          // shareScope: "default", // share scope with this name will be used
+          // eager: true
         },
         'react-dom': {
           singleton: true,
           requiredVersion: deps['react-dom'],
-          eager: true
+          // eager: true
         },
         'react-redux':{
           singleton: true,
           requiredVersion: deps['react-dom'],
-          eager: true
+          // eager: true
         },
       }
     }),
+    new EagerLoadingRemotePlugin(),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({

@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import { Jumbotron, Container, Row, Button } from 'reactstrap';
 import {useDispatch, useSelector} from 'react-redux';
 
-const SearchByItem = React.lazy(() => import('search/SearchByItem'))
+// const SearchByItem = React.lazy(() => import('search/SearchByItem')) // for lazy load
+import SearchByItem from 'Search/SearchByItem';
 
 const RightPanel = () => {
     const dispatch = useDispatch();
