@@ -6,6 +6,7 @@ import {GETLIST} from './actionTypes';
 export default (state= {items: []}, action) => {
     switch(action.type) {
         case GETLIST:
+            debugger; // home
             return {
                 ...state,
                 items: action.payload.items

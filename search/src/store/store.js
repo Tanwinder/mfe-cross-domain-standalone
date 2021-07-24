@@ -7,8 +7,8 @@ import reducer from './reducer/rootReducer';
 
 const sagaMiddleWare = createSagaMiddleware();
 
-let store = createStore(reducer, composeWithDevTools(applyMiddleware(sagaMiddleWare)))
+let store1 = createStore(reducer, composeWithDevTools(applyMiddleware(sagaMiddleWare)))
 
 sagaMiddleWare.run(rootSaga);
 
-export default store;
+export default store1;

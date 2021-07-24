@@ -5,6 +5,7 @@ import {Api} from '../../utils/api';
 
 function* callLoginSaga({formData, history, alreadyLoggedIn}) {
     const { from } = history?.location?.state || { from: { pathname: "/" } };
+    // const {from} = history?.state?.state;  //to access different previous domain
     try {
         if (!!alreadyLoggedIn) {
             yield put({ type: AUTH_RESULT, payload: JSON.parse(formData) });

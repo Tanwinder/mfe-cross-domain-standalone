@@ -6,6 +6,7 @@ import {CALLLIST, GETLIST} from './actionTypes'
 function* callLoginSaga({val}) {
     try {
         const { data } = yield call(Api, `/api/items/homesupplies/${val}`);
+        debugger;// home
         yield put({type: GETLIST, payload: data})
     } catch (error) {
         console.log('error', error)

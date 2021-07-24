@@ -1,6 +1,4 @@
 import { takeLatest, call, put, all } from 'redux-saga/effects'
-
-import {AUTH_RESULT, CALL_LOGIN,CALL_SIGNUP, LOG_OUT, LOG_OUT_USER} from './actionTypes'
 import {Api} from '../../utils/api';
 
 function* callLoginSaga({formData, history, alreadyLoggedIn}) {

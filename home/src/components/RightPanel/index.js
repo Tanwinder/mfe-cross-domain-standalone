@@ -3,7 +3,7 @@ import { Jumbotron, Container, Row, Button } from 'reactstrap';
 import {useDispatch, useSelector} from 'react-redux';
 
 // const SearchByItem = React.lazy(() => import('search/SearchByItem')) // for lazy load
-import SearchByItem from 'Search/SearchByItem';
+import App from 'Search/App';
 
 const RightPanel = () => {
     const dispatch = useDispatch();
@@ -17,7 +17,7 @@ const RightPanel = () => {
             <React.Suspense fallback={<div>Loading Search...</div>}>
                     {
                         showSearch ?
-                        <SearchByItem />
+                        <App />
                         :
                         ""
                     }

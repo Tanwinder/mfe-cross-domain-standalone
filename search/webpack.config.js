@@ -68,7 +68,8 @@ module.exports = {
       //   search: 'search'
       // },
       exposes: {
-        "./SearchByItem": "./src/components/SearchByItem/SearchByItem.js" 
+        // "./SearchByItem": "./src/components/SearchByItem/SearchByItem.js" 
+        "./App": "./src/index.js" 
       },
       shared: {
         react: {
@@ -86,7 +87,22 @@ module.exports = {
         },
         'react-redux':{
           singleton: true,
-          requiredVersion: deps['react-dom'],
+          requiredVersion: deps['react-redux'],
+          // eager: true
+        },
+        'redux-saga':{
+          singleton: true,
+          requiredVersion: deps['redux-saga'],
+          // eager: true
+        },
+        'redux':{
+          singleton: true,
+          requiredVersion: deps['redux'],
+          // eager: true
+        },
+        'redux-devtools-extension/developmentOnly':{
+          singleton: true,
+          requiredVersion: deps['redux-devtools-extension/developmentOnly'],
           // eager: true
         },
       }

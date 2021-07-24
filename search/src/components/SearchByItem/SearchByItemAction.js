@@ -4,7 +4,10 @@ import { CALLLIST } from './actionTypes'
 // const { AUTH, CALL_AUTH, LOG_OUT } = obj;
 
 // export const signin = (formData, history, alreadyLoggedIn) => ({ type: CALL_AUTH, formData, history, alreadyLoggedIn });
-export const callList = (val) => ({type: CALLLIST, val});
+export const callList = (val) => {
+    debugger;
+    return ({type: CALLLIST, val})
+};
 
 
 // below code is for redux-thunk middleware

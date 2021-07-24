@@ -6,13 +6,14 @@ import {useDispatch, useSelector, Provider} from 'react-redux'
 import {useHistory} from 'react-router-dom'
 import {callList} from './SearchByItemAction'
 import SearchContainer from './SearchContainer'
-import store from '../../store/store'
+// import store1 from '../../store/store'
 
 const SearchByItem = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     // const [inputVal, setinputVal] = useState('');
     const items = useSelector(state => state?.SearchByItem?.items);
+    debugger;
     useEffect(() => {
         if(!sessionStorage.getItem('profile')) {
             history.push('/login');
@@ -33,7 +34,7 @@ const SearchByItem = () => {
          window.dispatchEvent(event);
      } 
     return(
-            <Provider store={store} >
+            // <Provider store={store1} >
                 <div className="searchbyitem">
                             <Input 
                             placeholder="search by city name" 
@@ -46,7 +47,7 @@ const SearchByItem = () => {
                                 <div>Loading...</div>
                             }
             </div>
-            </Provider>
+            // </Provider>
         
     )
 }

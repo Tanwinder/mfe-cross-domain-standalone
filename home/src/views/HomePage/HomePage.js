@@ -1,9 +1,8 @@
 import React, {useState, useEffect, useRef, useCallback} from 'react';
 import { Jumbotron, Container, Row, Col } from 'reactstrap';
-import './HomePage.scss'
-// import {useDispatch, useSelector} from 'react-redux'
-import LeftPanel from '../LeftPanel/LeftPanel';
-import RightPanel from '../RightPanel/RightPanel';
+import './HomePage.scss';
+import LeftPanel from '../../components/LeftPanel';
+import RightPanel from '../../components/RightPanel';
 
 const HomePage = () => {
     return(
