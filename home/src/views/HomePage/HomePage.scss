@@ -1,18 +1,18 @@
 .homePage {
-    .mainContainer {
-        display: flex;
-        justify-content: space-between;
-    }
-    &__col {
-        border-left: 1px solid gray;
-        border-right: 1px solid gray;
-        border-top: 1px solid gray;
-        border-bottom: 1px solid gray;
-        background: rgba(249, 245, 245, 0.03137);
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        padding: 1rem 0;
-    }
+  .mainContainer {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__col {
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    background: rgba(249, 245, 245, 0.03137);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 1rem 0;
+  }
 }

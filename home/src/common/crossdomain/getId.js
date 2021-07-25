@@ -1,13 +1,13 @@
 const prefix = 'sessionAccessId-';
 
 function getId(data) {
-    let id;
+  let id;
 
-    if (data && data.id && ~data.id.indexOf(prefix)) {
-        id = data.id;
-    }
+  if (data && data.id && ~data.id.indexOf(prefix)) {
+    id = data.id;
+  }
 
-    return id;
+  return id;
 }
 
 module.exports = getId;
