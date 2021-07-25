@@ -12,4 +12,4 @@ const UserInfo = ({ userInfo }) => {
   );
 };
 
-export default userInfo;
+export default UserInfo;
