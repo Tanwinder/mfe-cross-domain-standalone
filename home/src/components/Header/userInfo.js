@@ -11,3 +11,5 @@ const UserInfo = ({ userInfo }) => {
     </>
   );
 };
+
+export default userInfo;
