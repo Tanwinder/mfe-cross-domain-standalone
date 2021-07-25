@@ -1,5 +1,5 @@
-import cookieDecoder from "./helpers/cookieDecoder";
-import { LOGIN_DATA_COOKIE, SESSION_STORAGE_LIST } from "../constants";
+import cookieDecoder from './helpers/cookieDecoder';
+import { LOGIN_DATA_COOKIE, SESSION_STORAGE_LIST } from '../constants';
 
 const getLoginDataCookie = () => {
   const cookieValue = cookieDecoder(LOGIN_DATA_COOKIE);

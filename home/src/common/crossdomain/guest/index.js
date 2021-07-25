@@ -3,141 +3,141 @@ const getId = require('../getId');
 const prefix = 'sessionAccessId-';
 
 function createId() {
-    return prefix + Date.now();
+  return prefix + Date.now();
 }
 
 module.exports = function storageGuest(source, parent) {
-    parent = parent || document.body;
+  parent = parent || document.body;
 
-    let contentWindow;
-    let callbacks = {};
-    const sessionRequests = [];
-    let connected = false;
-    let closed = true;
-    let connectedTimeout;
-    let isLoaded = false;
+  let contentWindow;
+  let callbacks = {};
+  const sessionRequests = [];
+  let connected = false;
+  let closed = true;
+  let connectedTimeout;
+  let isLoaded = false;
 
-    const iframe = document.createElement('iframe');
-    iframe.src = source;
-    iframe.width = 0;
-    iframe.height = 0;
-    iframe.style.display = 'none';
-    iframe.onload = () => {
-        isLoaded = true;
-    };
+  const iframe = document.createElement('iframe');
+  iframe.src = source;
+  iframe.width = 0;
+  iframe.height = 0;
+  iframe.style.display = 'none';
+  iframe.onload = () => {
+    isLoaded = true;
+  };
 
-    function openStorage() {
-        parent.appendChild(iframe);
-        contentWindow = iframe.contentWindow;
-        closed = false;
+  function openStorage() {
+    parent.appendChild(iframe);
+    contentWindow = iframe.contentWindow;
+    closed = false;
 
-        window.addEventListener('message', handleMessage);
+    window.addEventListener('message', handleMessage);
 
-        checkConnected();
+    checkConnected();
+  }
+
+  openStorage();
+
+  function handleMessage(event) {
+    const response = event.data;
+    const sessionAccessId = getId(response);
+
+    if (sessionAccessId === 'sessionAccessId-connected') {
+      connected = true;
+      return;
     }
 
-    openStorage();
-
-    function handleMessage(event) {
-        const response = event.data;
-        const sessionAccessId = getId(response);
-
-        if (sessionAccessId === 'sessionAccessId-connected') {
-            connected = true;
-            return;
-        }
-
-        if (response.connectError) {
-            Object.keys(callbacks).forEach((key) => callbacks[key](response.error));
-            callbacks = {};
-            return;
-        }
-
-        const callback = callbacks[sessionAccessId];
-
-        if (sessionAccessId && callback) {
-            callback(response.error, response.data);
-        }
+    if (response.connectError) {
+      Object.keys(callbacks).forEach((key) => callbacks[key](response.error));
+      callbacks = {};
+      return;
     }
 
-    function close() {
-        clearTimeout(connectedTimeout);
-        window.removeEventListener('message', handleMessage);
-        iframe.parentNode.removeChild(iframe);
-        connected = false;
-        closed = true;
+    const callback = callbacks[sessionAccessId];
+
+    if (sessionAccessId && callback) {
+      callback(response.error, response.data);
+    }
+  }
+
+  function close() {
+    clearTimeout(connectedTimeout);
+    window.removeEventListener('message', handleMessage);
+    iframe.parentNode.removeChild(iframe);
+    connected = false;
+    closed = true;
+  }
+
+  function message(method, key, value, callback) {
+    if (closed) {
+      openStorage();
     }
 
-    function message(method, key, value, callback) {
-        if (closed) {
-            openStorage();
-        }
-
-        if (!connected && method !== 'connect') {
-            sessionRequests.push([method, key, value, callback]);
-        }
-
-        const id = createId();
-
-        if (callbacks && typeof callback === 'function') {
-            callbacks[id] = callback;
-        }
-
-        if (isLoaded) {
-            contentWindow.postMessage(
-                {
-                    method,
-                    key,
-                    value,
-                    id,
-                },
-                source,
-            );
-        }
+    if (!connected && method !== 'connect') {
+      sessionRequests.push([method, key, value, callback]);
     }
 
-    function get(key, callback) {
-        if (!callback) {
-            throw new Error('callback required for get');
-        }
-        message('get', key, null, callback);
-    }
-    function getsession(key, callback) {
-        if (!callback) {
-            throw new Error('callback required for get');
-        }
-         //Home
-        message('getsession', key, null, callback);
+    const id = createId();
+
+    if (callbacks && typeof callback === 'function') {
+      callbacks[id] = callback;
     }
 
-    function set(key, value, callback) {
-        message('set', key, value, callback);
+    if (isLoaded) {
+      contentWindow.postMessage(
+        {
+          method,
+          key,
+          value,
+          id,
+        },
+        source,
+      );
+    }
+  }
+
+  function get(key, callback) {
+    if (!callback) {
+      throw new Error('callback required for get');
+    }
+    message('get', key, null, callback);
+  }
+  function getsession(key, callback) {
+    if (!callback) {
+      throw new Error('callback required for get');
+    }
+    //Home
+    message('getsession', key, null, callback);
+  }
+
+  function set(key, value, callback) {
+    message('set', key, value, callback);
+  }
+
+  function remove(key, callback) {
+    message('remove', key, null, callback);
+  }
+
+  function checkConnected() {
+    if (connected) {
+      clearTimeout(connectedTimeout);
+      while (sessionRequests.length) {
+        message(...sessionRequests.pop());
+      }
+
+      return;
     }
 
-    function remove(key, callback) {
-        message('remove', key, null, callback);
-    }
+    message('connect');
 
-    function checkConnected() {
-        if (connected) {
-            clearTimeout(connectedTimeout);
-            while (sessionRequests.length) {
-                message(...sessionRequests.pop());
-            }
+    connectedTimeout = setTimeout(checkConnected, 125);
+  }
 
-            return;
-        }
-
-        message('connect');
-
-        connectedTimeout = setTimeout(checkConnected, 125);
-    }
-
-    return {
-        get,
-        getsession,
-        set,
-        remove,
-        close,
-    };
+  return {
+    get,
+    getsession,
+    set,
+    remove,
+    close,
+  };
 };
