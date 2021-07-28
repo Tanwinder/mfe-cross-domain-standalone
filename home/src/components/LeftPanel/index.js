@@ -6,17 +6,19 @@ import { addToCart } from './Actions';
 import { useSelector, useDispatch } from 'react-redux';
 
 const LeftPanel = () => {
-  const [itemsArr, setItemsArr] = useState([]);
+  // const [itemsArr, setItemsArr] = useState([]);
   const dispatch = useDispatch();
-  // const cart = useSelector( state => state?.cart);
-  // const itemsArr = cart.items;
-  // const addToCartEvent = useCallback((event) => {
-  //     if(event) {
-  //         const details = event?.detail;
-  //             dispatch(addToCart(details))
-  //     }
-  // }, [])
-  // useWindowEvent('addToCart', addToCartEvent);
+  const cart = useSelector((state) => state?.cart);
+  const itemsArr = cart?.items;
+  const addToCartEvent = useCallback((event) => {
+    debugger;
+    const isDuplicate = itemsArr && itemsArr.some((item) => item._id === event.detail._id);
+    if (event && !isDuplicate) {
+      const details = event?.detail;
+      dispatch(addToCart(details));
+    }
+  }, []);
+  useWindowEvent('addToCart', addToCartEvent);
   return (
     <Container className="leftpanel" fluid={true}>
       <h2>Cart</h2>

@@ -1,4 +1,6 @@
+import { Row, Col } from 'reactstrap';
 const ItemDetails = ({ items }) => {
+  debugger;
   return (
     items &&
     items.map((item, i) => (
@@ -7,9 +9,9 @@ const ItemDetails = ({ items }) => {
         style={{ background: i % 2 == 0 ? 'lightGray' : 'white', padding: '5px 2px' }}
         xs="12"
       >
-        <Col>{item.customer.email}</Col>
-        <Col>{item.customer.age}</Col>
-        <Col>{item.storeLocation}</Col>
+        <Col>{item?.customer?.email}</Col>
+        <Col>{item?.customer?.age}</Col>
+        <Col>{item?.storeLocation}</Col>
       </Row>
     ))
   );

@@ -5,7 +5,7 @@ export default (state = { items: [] }, action) => {
     case ADD_TO_CART:
       return {
         ...state,
-        items: [...items, action.payload],
+        items: [...state.items, action.payload],
       };
     default:
       return state;
