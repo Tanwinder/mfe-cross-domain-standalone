@@ -10,6 +10,9 @@ import { BrowserRouter } from 'react-router-dom';
 import store from './store/store';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import initMockServiceWorker from './mocks/initMockServiceWorker';
+initMockServiceWorker();
+
 render(
   <Provider store={store}>
     <BrowserRouter>

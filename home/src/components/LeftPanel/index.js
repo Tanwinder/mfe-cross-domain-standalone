@@ -11,7 +11,6 @@ const LeftPanel = () => {
   const cart = useSelector((state) => state?.cart);
   const itemsArr = cart?.items;
   const addToCartEvent = useCallback((event) => {
-    debugger;
     const isDuplicate = itemsArr && itemsArr.some((item) => item._id === event.detail._id);
     if (event && !isDuplicate) {
       const details = event?.detail;

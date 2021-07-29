@@ -1,0 +1,11 @@
+{
+  "result": {
+    "_id": "60c6347afe40215877d64677",
+    "email": "sid@gmail.com",
+    "password": "$2a$12$riUsTxgjmAy5q6ASxcRt0.lI4.iZQeM5I0fAjbILjX8lE3NwYXbIO",
+    "firstName": "SidTest",
+    "lastName": "SidhuTest",
+    "__v": 0
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNpZEBnbWFpbC5jb20iLCJmaXJzdG5hbWUiOiJTaWQiLCJsYXN0bmFtZSI6IlNpZGh1IiwiaWQiOiI2MGM2MzQ3YWZlNDAyMTU4NzdkNjQ2NzciLCJpYXQiOjE2Mjc1MjkxMTUsImV4cCI6MTYyNzUzMDkxNX0.ldQd5yomrC1stKfar-PtpEujBF_LNH-n2_cW1-cdQPM"
+}

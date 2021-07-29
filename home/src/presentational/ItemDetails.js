@@ -1,6 +1,5 @@
 import { Row, Col } from 'reactstrap';
 const ItemDetails = ({ items }) => {
-  debugger;
   return (
     items &&
     items.map((item, i) => (
